@@ -10,8 +10,7 @@
     z-index: 100;                   /* 出現在最上層 */
     /* animation */
     transform: translateY(-130%);   /* 平移位置 */
-    transition: 0.5s;               /* 移動時間 */
-  
+    transition: 0.5s;
     display: none;     
    
 }
@@ -24,16 +23,19 @@
 .itembox:hover{
     background-color: #b2d3f0;
 }
+.appear{
+    transform: translateY(0%);
+}
 
-/* 以 checkbox 實現點選功能 */
+/* 以 checkbox 實現點選功能
 #menu_btn{
     display: none;
 }
 /* checkbox 被選取事件 */
-#menu_btn:checked ~ .menu {
-    /* 點選後移動 menu 至可視區域 */
+/* #menu_btn:checked ~ .menu {
+   
     transform: translateY(0%);
-}
+} */
 /* 漢堡按鈕設定 */
 header>.burger{
     display: none;

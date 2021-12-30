@@ -4,18 +4,22 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <title>RWD Layout</title>
-        <link href="work1_style.css" rel="stylesheet" type="text/css" media="all" />
-        <style>
-
-        </style>
+        
+        <link href="work1_style.css" rel="stylesheet" type="text/css" media="all" />    
+        <script type="text/javascript">
+            function toggleMenu(number){
+                var menu = document.getElementById("menulist")
+                menu.classList.toggle("appear");
+            }
+        </script>
     </head>
     <body style="margin: 0px;">
         <header>
-            <input type="checkbox" name="menu_btn" id="menu_btn" /> 
-            <label for="menu_btn" class="burger">
-                <img src="burger.png"></img>
-            </label>
-            <div class="menu">
+            <!-- <input type="checkbox" name="menu_btn" id="menu_btn" />  -->
+            <div OnClick="toggleMenu(1);" class="burger">
+                <img src="https://cw-yang.github.io/wehelp-assignments/week-1/my_pic/burger.png"></img>
+            </div>
+            <div class="menu" id="menulist">
                 <div class="itembox">Item1</div>
                 <div class="itembox">Item2</div>
                 <div class="itembox">Item3</div>
@@ -34,37 +38,37 @@
         </nav>
         <main>
             <div class="picbox">
-                <img src="向陽農場.jpg">
+                <img src="https://cw-yang.github.io/wehelp-assignments/week-1/my_pic/向陽農場.jpg">
                 <div>向陽農場</div>
             </div>
             <div class="picbox">
-                <img src="永安漁港.jpg">
+                <img src="https://cw-yang.github.io/wehelp-assignments/week-1/my_pic/永安漁港.jpg">
                 <div>永安漁港</div>
             </div>
             <div class="picbox">
-                <img src="龍貓公車站.jpg">
+                <img src="https://cw-yang.github.io/wehelp-assignments/week-1/my_pic/龍貓公車站.jpg">
                 <div>龍貓公車站</div>
             </div>
             <div class="picbox">
-                <img src="大王蓮花季.jpg">
+                <img src="https://cw-yang.github.io/wehelp-assignments/week-1/my_pic/大王蓮花季.jpg">
                 <div>大王蓮花季</div>
             </div>
         </main>
         <main>
             <div class="picbox">
-                <img src="白沙岬燈塔.jpg">
+                <img src="https://cw-yang.github.io/wehelp-assignments/week-1/my_pic/白沙岬燈塔.jpg">
                 <div>白沙岬燈塔</div>
             </div>
             <div class="picbox">
-                <img src="草漯沙丘.jpg">
+                <img src="https://cw-yang.github.io/wehelp-assignments/week-1/my_pic/草漯沙丘.jpg">
                 <div>草漯沙丘</div>
             </div>
             <div class="picbox">
-                <img src="彩色海芋節.jpg">
+                <img src="https://cw-yang.github.io/wehelp-assignments/week-1/my_pic/彩色海芋節.jpg">
                 <div>彩色海芋節</div>
             </div>
             <div class="picbox">
-                <img src="白千層綠色隧道.jpg">
+                <img src="https://cw-yang.github.io/wehelp-assignments/week-1/my_pic/白千層綠色隧道.jpg">
                 <div>白千層綠色隧道</div>
             </div>
         </main>
