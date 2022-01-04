@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript">
+            ///
+            /// calculate a sum between the maximum and the minimum
+            ///
+            function calculate(min, max)
+            {
+                var sum = 0;
+                for(i = min; i < max + 1; i++)
+                {
+                    sum = sum + i;
+                }
+                console.log(sum);
+            }
+            ///
+            /// calculate the average of salary
+            ///
+            function avg(data)
+            {
+                var num = data['count'];
+                var stuff = data['employees'];
+                var sum = 0;
+                // get every single salary in dictionary about employees
+                for(i = 0; i < num; i++)
+                {
+                    sum += stuff[i]['salary'];
+                }
+                console.log(sum/num);
+            }
+            ///
+            /// find maximum and secondary values upon the list and calculate the result of multiplication
+            ///
+            function maxProduct(nums)
+            {
+                var val = 0;
+                var max = 0;
+                var scd = 0;
+
+                for(i = 0; i < nums.length; i++)
+                {
+                    val = nums[i];
+                    if(i < 1)
+                    {
+                        max = val;
+                        scd = val;
+                    }
+                    else
+                    {
+                        if(val > max)
+                        {
+                            scd = max;
+                            max = val;
+                        }
+                        else if(val > scd | max == scd)
+                        {
+                            scd = val;
+                        }
+                    }
+                }
+                console.log(max*scd);    
+            }
+            ///
+            /// find two numbers which one plus another equals the target upon the list
+            ///
+            function twoSum(nums, target)
+            {
+                var val = 0;
+                var val_2 = 0;
+                var index = 0;
+                var index_2 = 0;
+                var sum = 0;
+
+                for(i = 0; i < nums.length; i++)
+                {
+                    val = nums[i];
+                    if(val <= target)
+                    {
+                        val_2 = target - val;
+                        for(j = i+1; j < nums.length; j++)
+                        {
+                            if(nums[j] == val_2)
+                            {
+                                index = i;
+                                index_2 = j;
+                                sum = nums[index] + nums[index_2];
+                                break;
+                            }
+                        }
+                    }
+                }
+                if(target == sum || index != index_2)
+                {
+                    var str = "[" + index + "," + index_2 + "]";
+                    return str;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+            ///
+            /// Count the maximum length of zero continuously (?)
+            ///
+            function maxZeros(nums)
+            {
+                var val = 0;
+                var cnt = 0;
+                var last_cnt = 0;
+
+                for(i = 0; i < nums.length; i++)
+                {
+                    val = nums[i];
+
+                    if(val == 0)
+                    {
+                        cnt++;
+
+                        if(cnt > last_cnt)
+                            last_cnt = cnt;   
+                    }
+                    else
+                    cnt = 0;
+                }
+                console.log(last_cnt);
+            }
+        </script>
+    </head>
+    <body onload="calculate(1, 3); calculate(4, 8);
+                    avg({'count':3, 'employees':[{'name':'John', 'salary':30000}, 
+                                            {'name':'Bob', 'salary':60000}, 
+                                            {'name':'Jenny', 'salary':50000}] });
+                    maxProduct([5, 20, 2, 6]); maxProduct([10, -20, 0, 3]); maxProduct([-1, 2]); maxProduct([-1, 0, 2]);
+                    let result = twoSum([2, 11, 7, 15], 9); console.log(result);
+                    maxZeros([0, 1, 0, 0]); maxZeros([1, 0, 0, 0, 0, 1, 0, 1, 0, 0]); maxZeros([1, 1, 1, 1, 1]); maxZeros([0, 0, 0, 1, 1])">
+
+    </body>
+</html>
