@@ -37,6 +37,8 @@
                 var val = 0;
                 var max = 0;
                 var scd = 0;
+                var thd = 0;
+                var sum;
 
                 for(i = 0; i < nums.length; i++)
                 {
@@ -44,22 +46,38 @@
                     if(i < 1)
                     {
                         max = val;
-                        scd = val;
                     }
                     else
                     {
-                        if(val > max)
+                        if(Math.abs(val) > Math.abs(max))
                         {
                             scd = max;
                             max = val;
                         }
-                        else if(val > scd | max == scd)
+                        else if(Math.abs(val.abs) > Math.abs(scd))
                         {
+                            thd = scd;
                             scd = val;
+                        }
+                        else if(Math.abs(val) > Math.abs(thd))
+                        {
+                            thd = val;
                         }
                     }
                 }
-                console.log(max*scd);    
+                if(nums.length > 2)
+                {
+                    if(max*scd > 0)
+                        sum = max*scd;
+                    else if(max*thd > 0)
+                        sum = max*thd;
+                    else
+                        sum = scd*thd;
+                }
+                else
+                    sum = max*scd;
+
+                console.log(sum);    
             }
             ///
             /// find two numbers which one plus another equals the target upon the list
@@ -131,7 +149,7 @@
                     avg({'count':3, 'employees':[{'name':'John', 'salary':30000}, 
                                             {'name':'Bob', 'salary':60000}, 
                                             {'name':'Jenny', 'salary':50000}] });
-                    maxProduct([5, 20, 2, 6]); maxProduct([10, -20, 0, 3]); maxProduct([-1, 2]); maxProduct([-1, 0, 2]);
+                    maxProduct([5, 20, 2, 6]); maxProduct([10, -20, 0, 3]); maxProduct([-1, 2]); maxProduct([-1, 0, 2]); maxProduct([-1, -2, 0]);
                     let result = twoSum([2, 11, 7, 15], 9); console.log(result);
                     maxZeros([0, 1, 0, 0]); maxZeros([1, 0, 0, 0, 0, 1, 0, 1, 0, 0]); maxZeros([1, 1, 1, 1, 1]); maxZeros([0, 0, 0, 1, 1])">
 

@@ -48,21 +48,36 @@ avg({
 def maxProduct(nums):
     max = 0
     scd = 0
+    thd = 0
+    sum = 0
     length = len(nums)
+
     for i in range(0, length):
         val = nums[i]
 
         if(i < 1):
             max = val
-            scd = val
         else:
-            if(val > max):
+
+            if(abs(val) > abs(max)):
                 scd = max
                 max = val
-            elif(val > scd or max == scd):
+            elif(abs(val) > abs(scd)):
+                thd = scd
                 scd = val
-
-    sum = max*scd
+            elif(abs(val) > abs(thd)):
+                thd = val
+    
+    if(length > 2):
+        if(max*scd > 0):
+            sum = max*scd
+        elif(max*thd > 0):
+            sum = max*thd
+        else:
+            sum = scd*thd
+    else:
+        sum = max*scd
+        
     print(sum)
 
 # call function
@@ -70,6 +85,7 @@ maxProduct([5, 20, 2, 6])
 maxProduct([10, -20, 0, 3])
 maxProduct([-1, 2])
 maxProduct([-1, 0, 2])
+maxProduct([-1, -2, 0])
 #
 # find two numbers which one plus another equals the target upon the list
 #
