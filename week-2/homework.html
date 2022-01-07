@@ -7,7 +7,7 @@
             ///
             function calculate(min, max)
             {
-                var sum = 0;
+                let sum = 0;
                 for(i = min; i < max + 1; i++)
                 {
                     sum = sum + i;
@@ -19,9 +19,9 @@
             ///
             function avg(data)
             {
-                var num = data['count'];
-                var stuff = data['employees'];
-                var sum = 0;
+                let num = data['count'];
+                let stuff = data['employees'];
+                let sum = 0;
                 // get every single salary in dictionary about employees
                 for(i = 0; i < num; i++)
                 {
@@ -34,43 +34,43 @@
             ///
             function maxProduct(nums)
             {
-                var val = 0;
-                var max = 0;
-                var scd = 0;
-                var thd = 0;
-                var sum;
+                let val = 0;                        
+                let max = 0;                        
+                let scd = 0;                       
+                let thd = 0;                        
+                let sum;                            
 
-                for(i = 0; i < nums.length; i++)
+                for(i = 0; i < nums.length; i++)    
                 {
-                    val = nums[i];
+                    val = nums[i];                 
                     if(i < 1)
                     {
-                        max = val;
+                        max = val;                  
                     }
                     else
                     {
                         if(Math.abs(val) > Math.abs(max))
                         {
-                            scd = max;
-                            max = val;
+                            scd = max;              
+                            max = val;              
                         }
                         else if(Math.abs(val) > Math.abs(scd))
                         {
-                            thd = scd;
-                            scd = val;
+                            thd = scd;              
+                            scd = val;              
                         }
                         else if(Math.abs(val) > Math.abs(thd))
                         {
-                            thd = val;
+                            thd = val;              
                         }
                     }
                 }
                 if(nums.length > 2)
                 {
                     if(max*scd > 0)
-                        sum = max*scd;
+                        sum = max*scd;              
                     else if(max*thd > 0)
-                        sum = max*thd;
+                        sum = max*thd;              
                     else
                         sum = scd*thd;
                 }
@@ -84,11 +84,11 @@
             ///
             function twoSum(nums, target)
             {
-                var val = 0;
-                var val_2 = 0;
-                var index = 0;
-                var index_2 = 0;
-                var sum = 0;
+                let val = 0;
+                let val_2 = 0;
+                let index = 0;
+                let index_2 = 0;
+                let sum = 0;
 
                 for(i = 0; i < nums.length; i++)
                 {
@@ -110,7 +110,7 @@
                 }
                 if(target == sum || index != index_2)
                 {
-                    var str = "[" + index + "," + index_2 + "]";
+                    let str = "[" + index + "," + index_2 + "]";
                     return str;
                 }
                 else
@@ -123,9 +123,9 @@
             ///
             function maxZeros(nums)
             {
-                var val = 0;
-                var cnt = 0;
-                var last_cnt = 0;
+                let val = 0;
+                let cnt = 0;
+                let last_cnt = 0;
 
                 for(i = 0; i < nums.length; i++)
                 {
