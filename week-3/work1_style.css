@@ -1,0 +1,131 @@
+/* 行動裝置浮動選單 */
+/* 選單本體設定 */
+.menu{
+    background-color: #d5eafc;
+    /* height: 100vh; */
+    width: 25%;
+    position: absolute;
+    top: 35px;
+    right: 10px;
+    z-index: 100;                   /* 出現在最上層 */
+    /* animation */
+    transform: translateY(-130%);   /* 平移位置 */
+    transition: 0.5s;
+    display: none;     
+   
+}
+/* 選單內部選項設定 */
+.itembox{
+    text-align: center;
+    line-height: 30px;
+    border-bottom: solid 1px #000000;
+}
+.itembox:hover{
+    background-color: #b2d3f0;
+}
+.appear{
+    transform: translateY(0%);
+}
+
+/* 以 checkbox 實現點選功能
+#menu_btn{
+    display: none;
+}
+/* checkbox 被選取事件 */
+/* #menu_btn:checked ~ .menu {
+   
+    transform: translateY(0%);
+} */
+/* 漢堡按鈕設定 */
+header>.burger{
+    display: none;
+}
+.burger img{
+    width: 25px;
+    height: 25px;
+    right: 10px;
+    top: 10px;
+    position: absolute;
+}
+
+nav{
+    display: flex;
+}
+nav>.title{
+    flex:auto;
+    font-size: 20px;font-weight: bold;
+    margin: 10px;
+}
+nav>.item{
+    flex: none;width: 75px;
+    font-size: 18px;margin: 10px;
+}
+/* Welcome to MyhHome 設定 */
+nav>.topic{
+    flex: auto;height: 300px;line-height: 300px;
+    background-color: rgb(250, 221, 184);
+    text-align: center;
+    font-size: 40px;
+}
+
+.container{
+    display:flex;flex-wrap: wrap;
+    justify-content: center;
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    word-wrap: break-word;
+}
+/* 下方八格圖片設定 */
+.picbox{
+    flex: none;width: 280px;height: 300px;margin: 5px;
+    /* overflow: hidden;                */
+    background-color: rgb(250, 221, 184);
+    font-size: 20px; text-align: center;
+}
+/* 方格內圖片設定 */
+.picbox img{
+    width:100%;
+    height:78%;
+    object-fit: cover;
+    /* 拉近特效 */
+    /* transform:scale(1,1);transition: all 1s ease-out; */
+
+}
+.disappear{
+    display: none;
+}
+.extend{
+    width: 100px;
+    height: 50px;
+}
+/* .picbox img:hover{
+    transform:scale(1.1,1.1);
+} */
+
+@media (max-width:1200px){
+    .container{
+        width: 95%;
+    }
+    .picbox{
+        width:45%;
+    }
+}
+@media (max-width:600px){
+    .container{
+        width: 95%;
+    }
+    .picbox{
+        width:90%;
+    }
+    nav>.item{
+        display: none;
+    }
+    header>.burger{
+        display: block;
+    }
+    .menu{
+        display: block;
+    }
+}
+
