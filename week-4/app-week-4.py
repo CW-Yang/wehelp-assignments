@@ -8,6 +8,14 @@ app = Flask(__name__)
 
 app.secret_key = "key"
 
+# private function
+def isSuccess(account, password):
+    answer = "test"
+    return(account == answer and password == answer)
+
+def isEmpty(account, password):
+    return(account == "" or password == "")
+
 # Login page/ Main page
 @app.route("/")
 def main():
@@ -19,26 +27,16 @@ def main():
 def check():
     user_account = request.form["account"]
     user_password = request.form["password"]
-    answer = "test"
-    # print(user_account)
-    # print(user_password)
-
-    if(user_account == answer and user_password == answer):
-        state = "SUCCESS"
-    elif(user_account == "" or user_password == ""):
-        state = "EMPTY"       
-    else:
-        state = "WRONG"
-    
-    session["state"] = state
-    
-    # check state
-    if(state == "SUCCESS"):
+  
+    if(isSuccess(user_account, user_password)):
+        session["state"] = "SUCCESS"
         return redirect("/member/")
-    elif(state == "WRONG"):
-        return redirect("/error/?message=帳號或密碼輸入錯誤")
-    elif(state == "EMPTY"):
+    elif(isEmpty(user_account, user_password)):
+        session["state"] = "EMPTY"
         return redirect("/error/?message=請輸入帳號、密碼")
+    else:
+        session["state"] = "WRONG"
+        return redirect("/error/?message=帳號或密碼輸入錯誤")
 
     
 # Login successfully
