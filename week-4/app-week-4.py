@@ -23,7 +23,7 @@ def check():
     # print(user_account)
     # print(user_password)
 
-    if(user_account and user_password == answer):
+    if(user_account == answer and user_password == answer):
         state = "SUCCESS"
     elif(user_account == "" or user_password == ""):
         state = "EMPTY"       
