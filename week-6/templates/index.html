@@ -1,0 +1,46 @@
+<!DOCTYPE hmtl>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Main Page</title>
+        <style type="text/css">
+            .title{
+                width: auto;height: 200px;
+                font-size: 40px;font-weight: bold;
+                background-color: rgb(5, 10, 71);
+                text-align: center;
+                line-height: 200px;
+            }
+            .subject{
+                margin-top: 30px;margin-bottom: 15px; 
+                font-size: 30px; font-weight: bold;
+                text-align: center;
+            }
+            form{
+                text-align: center;
+            }
+            .content{
+                margin: 10px;
+            }
+        </style>
+    </head>
+    <body style="margin: 0">
+        <div class="title">
+            <div style="color: white;">歡迎光臨，請註冊登入系統</div>
+        </div>
+        <div class="subject">註冊帳號</div>
+        <form action="/signup" method="POST">
+                <div class="content">姓名 <input type="text" name="name" /></div>
+                <div class="content">帳號 <input type="text" name="unsign_account"/></div>
+                <div class="content">密碼 <input type="password" name="unsign_password"/></div>
+                <div class="content"><button>註冊</button></div>
+        </form>
+        <HR>
+        <div class="subject">登入系統</div>
+        <form action="/signin" method="POST">              
+                <div class="content">帳號 <input type="text" name="account"/></div>
+                <div class="content">密碼 <input type="password" name="password"/></div>
+                <div class="content"><button>登入</button></div> 
+        </form>
+    </body>
+</html>

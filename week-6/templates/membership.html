@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Member Page</title>
+        <style type="text/css">
+            .title{
+                width: auto;height: 200px;
+                font-size: 40px;font-weight: bold;
+                background-color: rgb(5, 10, 71);
+                text-align: center;
+                line-height: 200px;
+            }
+            .subject{
+                margin-top: 30px; 
+                font-size: 30px; font-weight: bold;
+                text-align: center;
+            }
+            .content{
+               text-align: center;
+               margin-top: 30px;
+               font-size: 30px;
+            }
+        </style>
+    </head>
+    <body style="margin: 0">
+        <div class="title">
+            <div style="color: white;">歡迎光臨，這是會員頁</div>
+        </div>
+        <div class="content">{{ name }}，歡迎登入系統</div>
+        <div class="content"><a href="/">登出系統</a></div>
+    </body>
+</html>
