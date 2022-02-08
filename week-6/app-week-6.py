@@ -29,12 +29,13 @@ def isEmpty(account, password):
     return(account == "" or password == "")
 
 def isReapt(unsign_account):
-    myCursor.execute("SELECT username FROM member")
-    result = myCursor.fetchall()
+    command = "SELECT * FROM member WHERE username = %s"
+    value = (unsign_account, )
+    myCursor.execute(command, value)
+    result = myCursor.fetchone()
 
-    for target in result:
-        if(str(target).strip('(),\'') == unsign_account):
-            return True
+    if(result != None):
+        return True
 
     return False
 
