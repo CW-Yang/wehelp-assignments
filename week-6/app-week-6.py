@@ -15,13 +15,13 @@ myCursor = mydb.cursor()
 
 # private function
 def isSuccess(account, password):
-    myCursor.execute("SELECT username, password FROM member")
-    result = myCursor.fetchall()
+    command = "SELECT * FROM member WHERE username = %s AND password = %s"
+    value = (account, password)
+    myCursor.execute(command, value)
+    result = myCursor.fetchone()
 
-    answer = (account, password)
-    for target in result:
-        if(target == answer):
-            return True
+    if(result != None):
+        return True
 
     return False
 
@@ -46,7 +46,7 @@ def insert_record(name, account, password):
 
 def get_user_name(account):
     command = "SELECT name FROM member WHERE username = %s"
-    username = (account, )
+    username = (account,)
     myCursor.execute(command, username)
     result = myCursor.fetchone()
     result = str(result).strip('(),\'')
