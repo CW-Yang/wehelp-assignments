@@ -1,0 +1,23 @@
+.title{
+    width:auto;height:200px;
+    font-size:40px;font-weight:bold;
+    background-color: rgb(5, 10, 71);
+    text-align:center;
+    line-height:200px;
+}
+.subject{
+    margin-top:30px;margin-bottom:15px;
+    font-size:30px;font-weight:bold;
+    text-align:center;
+}
+form{
+    text-align:center;
+}
+.label{
+    margin:10px;
+}
+.content{
+    text-align: center;
+    margin-top: 30px;
+    font-size: 30px;
+}

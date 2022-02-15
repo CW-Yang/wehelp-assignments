@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Main Page</title>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+    </head>
+    <body style="margin: 0">
+        <div class="title">
+            <div style="color:white;">歡迎光臨，請註冊登入系統</div>
+        </div>
+        <div class="subject">註冊帳號</div>
+        <form action="{{ url_for('app2.sign_up') }}" method="POST">
+                <div class="label">姓名 <input type="text" name="name" /></div>
+                <div class="label">帳號 <input type="text" name="unsign_username"/></div>
+                <div class="label">密碼 <input type="password" name="unsign_password"/></div>
+                <div class="label"><button>註冊</button></div>
+        </form>
+        <HR/>
+        <form action="{{ url_for('app2.sign_in') }}" method="POST">
+            <div class="subject">登入系統</div>
+            <div class="label">帳號 <input type="text" name="username"/></div>
+            <div class="label">密碼 <input type="password" name="password"/></div>
+            <div class="label"><button>登入</button></div>
+    </form>
+    </body>
+</html>

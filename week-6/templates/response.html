@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Error Page</title>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='pageStyle.css')}}">
+    </head>
+    <body style="margin: 0">
+        <div class="title">
+            <div style="color: white;">{{ subject }}</div>
+        </div>
+        <div class="content">{{ Msg }}</div>
+        <div class="content"><a href="/">{{ return_text }}</a></div>
+    </body>
+</html>

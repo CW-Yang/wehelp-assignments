@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Error Page</title>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+    </head>
+    <body style="margin: 0">
+        <div class="title">
+            <div style="color: white;">失敗頁面</div>
+        </div>
+        <div class="content">{{ error }}</div>
+        <div class="content"><a href="/">返回首頁</a></div>
+    </body>
+</html>

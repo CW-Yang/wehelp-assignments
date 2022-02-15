@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Member Page</title>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+        <script text="text/javascript">
+            async function search(){
+                let option = {
+                    method : 'get',
+                };
+                let username = document.getElementById("searching_name").value;
+                let response = await fetch("http://127.0.0.1:3000/api/members?username="+username, option);
+                let result = await response.json();
+                console.log(result);
+                let name = result["data"]["name"];
+                let memberUsername = "(" + result["data"]["username"] + ")";
+                document.getElementById("memberName").innerText = name;
+                document.getElementById("username").innerText = memberUsername;
+            }
+
+            async function changeName(){
+                let newName = document.getElementById("newName").value;
+                if(newName != ""){
+                    let headers = {
+                    "Content-Type":"application/json"
+                    };
+                    let body = {
+                        "name":newName
+                    };
+                    let option = {
+                        method:'post',
+                        headers:headers,
+                        body:JSON.stringify(body)
+                    };
+                    let response = await fetch("http://127.0.0.1:3000/api/member", option);
+                    let result = await response.json();
+                    if(result['ok']==true){
+                        document.getElementById("word").innerText = "更新成功";
+                        document.getElementById("welcome").innerText = newName+"，歡迎登入系統"
+                    }
+                };
+                
+            } 
+        </script>
+    </head>
+    <body style="margin: 0">
+        <div class="title">
+            <div style="color: white;">歡迎光臨，這是會員頁</div>
+        </div>
+        <div class="content" id="welcome">{{ name }}，歡迎登入系統</div>
+        <div class="content"><a href="/">登出系統</a></div>
+        <div style="margin:50px"></div>
+        <div class="subject">查詢會員姓名</div>
+        <div class="box">
+            <input type="text" id="searching_name" style="height:30px;width:200px" />
+            <button style="margin:10px;height:30px;width:50px;display:inline-block;" onclick="search()">查詢</button>
+        </div>        
+        <div class="box">
+            <div class="box2" id="memberName"></div>
+            <div class="box2" id="username"></div>
+        </div>
+        <div style="margin:50px"></div>
+        <div class="subject">更新我的姓名</div>
+        <div class="box">
+            <input type="text" id="newName" style="height:30px;width:200px" />
+            <button style="margin:10px;height:30px;width:50px;display:inline-block;" onclick="changeName()">更新</button>
+        </div>
+        <div class="box">
+            <div class="box2" id="word"></div>
+        </div>    
+    </body>
+</html>

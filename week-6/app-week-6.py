@@ -1,26 +1,51 @@
 import mysql.connector
-from flask import Flask, request, redirect, render_template, session
+from mysql.connector.pooling import MySQLConnectionPool
+from mysql.connector import errors
+from flask import Flask, request, redirect, render_template, session, url_for
 
 app = Flask(__name__)
 app.secret_key = "key"
 
-mydb = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="root",
-    database="website"
-)
+# mydb = mysql.connector.connect(
+#     host="localhost",
+#     user="root",
+#     password="root",
+#     database="website"
+# )
+config = {
+    "host":"localhost",
+    "user":"root",
+    "password":"root",
+    "database":"website"
+}
 
-myCursor = mydb.cursor()
+connection_pool = MySQLConnectionPool(pool_name='my_connection_pool',
+                                     pool_size=5,
+                                     **config)
 
 # private function
+def connect_database(command, value, data_modified):
+    try:
+        mydb = connection_pool.get_connection()
+        myCursor = mydb.cursor()
+        myCursor.execute(command, value)
+        result = myCursor.fetchall()
+
+        if(data_modified):
+            mydb.commit()
+    except errors.Error as e:
+        print(e)
+    finally:
+        mydb.close()
+        myCursor.close()
+        return result
+
 def isSuccess(account, password):
     command = "SELECT * FROM member WHERE username = %s AND password = %s"
     value = (account, password)
-    myCursor.execute(command, value)
-    result = myCursor.fetchone()
+    result = connect_database(command, value, False)
 
-    if(result != None):
+    if(result != None and result != []):
         return True
 
     return False
@@ -31,10 +56,9 @@ def isEmpty(account, password):
 def isReapt(unsign_account):
     command = "SELECT * FROM member WHERE username = %s"
     value = (unsign_account, )
-    myCursor.execute(command, value)
-    result = myCursor.fetchone()
+    result = connect_database(command, value, False)
 
-    if(result != None):
+    if(result != None and result != []):
         return True
 
     return False
@@ -42,17 +66,16 @@ def isReapt(unsign_account):
 def insert_record(name, account, password):
     command = "INSERT INTO member (name, username, password) VALUES (%s, %s, %s)"
     value = (name, account, password)
-    myCursor.execute(command, value)
-    mydb.commit()
+    result = connect_database(command, value, True)
+    return result
 
 def get_user_name(account):
     command = "SELECT name FROM member WHERE username = %s"
-    username = (account,)
-    myCursor.execute(command, username)
-    result = myCursor.fetchone()
-    result = str(result).strip('(),\'')
+    value = (account, )
+    data = connect_database(command, value, False)
+    data = tuple(data[0])[0]
 
-    return result
+    return data
 
 # Main Page
 @app.route("/")
@@ -67,7 +90,7 @@ def sign_up():
     password = request.form["unsign_password"]
 
     if(isReapt(account)):
-        return redirect("/error/?message=帳號已經被註冊")
+        return redirect(url_for('error', error_message="帳號已被註冊"))
     else:
         insert_record(name, account, password)
         return redirect("/")
@@ -80,26 +103,25 @@ def check():
     if(isSuccess(account, password)):
         session["name"] = get_user_name(account)
         session["state"] = "SUCCESS"
-        return redirect("/member/")
+        return redirect(url_for('membership'))
     elif(isEmpty(account, password)):
         session["state"] = "EMPTY"
-        return redirect("/error/?message=請輸入帳號、密碼")
+        return redirect(url_for('error', error_message="請輸入帳號或密碼"))
     else:
         session["state"] = "WRONG"
-        return redirect("/error/?message=帳號或密碼輸入錯誤")
+        return redirect(url_for('error', error_message="帳號或密碼輸入錯誤"))
 
 # Login successfully
 @app.route("/member/")
 def membership():
     if(session["state"] == "SUCCESS"):
-        return render_template("membership.html", name=session["name"])
+        return render_template("response.html", subject="歡迎光臨，這是會員頁", Msg=session["name"]+"，歡迎登入系統", return_text="登出系統")
     else:
         return redirect("/")
 
 # Login failed
-@app.route("/error/")
-def error():
-    message = request.args.get("message", "")
-    return render_template("errorMsg.html", errMsg=message)
+@app.route("/error/<error_message>")
+def error(error_message):
+    return render_template("response.html", subject="失敗頁面", Msg=error_message, return_text="返回首頁")
 
 app.run(port=3000)
