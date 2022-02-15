@@ -146,9 +146,12 @@ def renew_name():
     username = session["username"]
     result = update_data(new_name, username)
 
-    if(result == 1):
-        result = get_response_formatting("ok")
-        session["name"] = new_name
+    if(session["state"] == "SUCCESS"):
+        if(result == 1):
+            result = get_response_formatting("ok")
+            session["name"] = new_name
+        else:
+            result = get_response_formatting("error")
     else:
         result = get_response_formatting("error")
     
